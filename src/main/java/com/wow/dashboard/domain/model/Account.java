@@ -14,15 +14,15 @@ import lombok.*;
 public class Account {
     @Id
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "username")
     private String username;
 
-    @Column(name = "salt")
+    @Column(name = "salt", columnDefinition = "BINARY(32)")
     private byte[] salt;
 
-    @Column(name = "verifier")
+    @Column(name = "verifier", columnDefinition = "BINARY(32)")
     private byte[] verifier;
 
 }
