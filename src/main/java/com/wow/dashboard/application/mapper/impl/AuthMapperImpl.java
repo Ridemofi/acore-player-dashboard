@@ -14,6 +14,12 @@ public class AuthMapperImpl implements AuthMapper {
     public LoginResponse toLoginResponse(Account account, String token) {
         return LoginResponse.builder()
                 .username(account.getUsername())
+                .lastLogin(account.getLastLogin())
+                .lastIp(account.getLastIp())
+                .online(account.getOnline())
+                .totalTime(account.getTotalTime())
+                .locale(account.getLocale())
+                .os(account.getOs())
                 .token(token)
                 .build();
     }
