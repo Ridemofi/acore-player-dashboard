@@ -21,11 +21,14 @@ public class JwtTokenProvider {
         this.expirationMs = expirationMs;
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username, Long userId) {
+        // Genera el JWT incluyendo el username como subject y el id como claim "userId".
+        // Esto permite identificar al usuario en endpoints protegidos sin confiar en datos del cliente.
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMs);
         return Jwts.builder()
                 .subject(username)
+                .claim("userId", userId)
                 .issuedAt(now)
                 .expiration(expiry)
                 .signWith(key)
@@ -41,6 +44,16 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
+    public Integer getUserId(String token) {
+        // Extrae el claim "userId" desde el JWT ya validado por firma.
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get("userId", Integer.class);
+    }
+
     public boolean validateToken(String token) {
         try {
             Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
@@ -50,4 +63,3 @@ public class JwtTokenProvider {
         }
     }
 }
-

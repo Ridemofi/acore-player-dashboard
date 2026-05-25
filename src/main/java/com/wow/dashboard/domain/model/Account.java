@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @Builder
 public class Account {
     @Id
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id", columnDefinition = "int unsigned")
+    private Long id;
 
     @Column(name = "username")
     private String username;
@@ -33,13 +33,13 @@ public class Account {
     @Column(name = "last_ip")
     private String lastIp;
 
-    @Column(name = "online")
-    private Integer online;
+    @Column(name = "online", columnDefinition = "int unsigned")
+    private Long online;
 
-    @Column(name = "totaltime")
-    private Integer totalTime;
+    @Column(name = "totaltime", columnDefinition = "int unsigned")
+    private Long totalTime;
 
-    @Column(name = "locale")
+    @Column(name = "locale", columnDefinition = "tinyint unsigned")
     private Byte locale;
 
     @Column(name = "os")

@@ -26,7 +26,7 @@ public class AuthService {
         if (!ok) {
             throw new BadCredentialsException("Credenciales invalidas");
         }
-        String token = jwtTokenProvider.generateToken(account.getUsername());
+        String token = jwtTokenProvider.generateToken(account.getUsername(), account.getId());
         return new AuthResult(account, token);
     }
 

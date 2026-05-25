@@ -13,11 +13,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class LoginResponse {
+    private Long id;
     private String username;
     private LocalDateTime lastLogin;
     private String lastIp;
-    private Integer online;
-    private Integer totalTime;
+    private Long online;
+    private Long totalTime;
     private Byte locale;
     private String os;
 

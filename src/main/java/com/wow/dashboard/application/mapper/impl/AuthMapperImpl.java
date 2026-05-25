@@ -13,6 +13,7 @@ public class AuthMapperImpl implements AuthMapper {
     @Override
     public LoginResponse toLoginResponse(Account account, String token) {
         return LoginResponse.builder()
+                .id(account.getId())
                 .username(account.getUsername())
                 .lastLogin(account.getLastLogin())
                 .lastIp(account.getLastIp())
