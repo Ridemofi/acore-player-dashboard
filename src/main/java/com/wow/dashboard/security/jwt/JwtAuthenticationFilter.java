@@ -30,10 +30,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String token = header.substring(7);
             if (tokenProvider.validateToken(token)) {
                 String username = tokenProvider.getUsername(token);
-                Integer userId = tokenProvider.getUserId(token);
+                Long userId = tokenProvider.getUserId(token);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                        // Guardamos el userId como principal para accederlo en controllers sin reparsear el token.
+                        // userId queda como principal en el SecurityContext y es lo que lee @AuthenticationPrincipal.
                         userId,
                         null,
                         userDetails.getAuthorities()

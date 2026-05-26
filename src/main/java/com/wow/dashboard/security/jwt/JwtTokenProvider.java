@@ -44,14 +44,14 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-    public Integer getUserId(String token) {
+    public Long getUserId(String token) {
         // Extrae el claim "userId" desde el JWT ya validado por firma.
         return Jwts.parser()
                 .verifyWith(key)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
-                .get("userId", Integer.class);
+                .get("userId", Long.class);
     }
 
     public boolean validateToken(String token) {
