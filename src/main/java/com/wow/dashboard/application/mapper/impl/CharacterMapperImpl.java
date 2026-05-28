@@ -1,6 +1,7 @@
 package com.wow.dashboard.application.mapper.impl;
 
 import com.wow.dashboard.application.mapper.CharacterMapper;
+import com.wow.dashboard.domain.enums.CharacterClass;
 import com.wow.dashboard.domain.model.Character;
 import com.wow.dashboard.web.dto.character.response.CharacterResponse;
 import com.wow.dashboard.web.dto.character.response.CharacterListResponse;
@@ -54,7 +55,9 @@ public class CharacterMapperImpl implements CharacterMapper {
                 .account(character.getAccount())
                 .name(character.getName())
                 .race(character.getRace())
-                .characterClass(character.getCharacterClass())
+                .className(CharacterClass.fromId(Byte.toUnsignedInt(character.getCharacterClass())) != null
+                        ? CharacterClass.fromId(Byte.toUnsignedInt(character.getCharacterClass())).getLabel()
+                        : "Desconocido")
                 .level(character.getLevel())
                 .online(character.getOnline())
                 .build();

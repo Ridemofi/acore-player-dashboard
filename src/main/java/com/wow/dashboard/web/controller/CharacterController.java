@@ -1,6 +1,5 @@
 package com.wow.dashboard.web.controller;
 
-import com.wow.dashboard.application.exception.ErrorNegocio;
 import com.wow.dashboard.application.service.CharacterService;
 import com.wow.dashboard.web.dto.character.response.CharacterListResponse;
 import com.wow.dashboard.web.dto.character.response.CharacterResponse;
@@ -23,14 +22,11 @@ public class CharacterController {
 
     @GetMapping
     public ResponseEntity<List<CharacterListResponse>> getCharacters(@AuthenticationPrincipal Long userId) {
-        if (userId == null) {
-            throw new ErrorNegocio("Usuario no autenticado");
-        }
         return ResponseEntity.ok(characterService.getCharacters(userId));
     }
 
     @GetMapping("/{guid}")
-    public ResponseEntity<CharacterResponse> getCharacter(@PathVariable Long guid) {
-        return ResponseEntity.ok(characterService.getCharacter(guid));
+    public ResponseEntity<CharacterResponse> getCharacter(@AuthenticationPrincipal Long userId, @PathVariable Long guid) {
+        return ResponseEntity.ok(characterService.getCharacter(guid, userId));
     }
 }

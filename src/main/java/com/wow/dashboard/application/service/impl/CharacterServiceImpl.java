@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -19,13 +20,22 @@ public class CharacterServiceImpl implements CharacterService {
     private final CharacterRepository characterRepository;
 
     @Override
-    public CharacterResponse getCharacter(Long guid) {
+    public CharacterResponse getCharacter(Long guid, Long userId) {
+        if (userId == null) {
+            throw new ErrorNegocio("Usuario no autenticado");
+        }
         Character character = characterRepository.findByGuid(guid).orElseThrow(() -> new ErrorNegocio("Personaje No Encontrado"));
+        if(!Objects.equals(character.getAccount(), userId)) {
+            throw new ErrorNegocio("No tienes permiso para ver este personaje");
+        }
         return characterMapper.toDto(character);
     }
 
     @Override
     public List<CharacterListResponse> getCharacters(Long userId) {
+        if (userId == null) {
+            throw new ErrorNegocio("Usuario no autenticado");
+        }
         return characterRepository.findByAccount(userId)
                 .stream()
                 .map(characterMapper::toListDto)

@@ -6,6 +6,6 @@ import com.wow.dashboard.web.dto.character.response.CharacterResponse;
 import java.util.List;
 
 public interface CharacterService {
-    CharacterResponse getCharacter(Long guid);
+    CharacterResponse getCharacter(Long guid, Long userId);
     List<CharacterListResponse> getCharacters(Long userId);
 }
