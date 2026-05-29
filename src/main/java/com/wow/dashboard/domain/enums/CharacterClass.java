@@ -31,4 +31,9 @@ public enum CharacterClass {
         }
         return null;
     }
+
+    public static String getLabelSafe(int id) {
+        CharacterClass characterClass = fromId(id);
+        return characterClass != null ? characterClass.getLabel() : "Desconocido";
+    }
 }

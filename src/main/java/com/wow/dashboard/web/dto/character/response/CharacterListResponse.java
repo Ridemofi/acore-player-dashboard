@@ -16,8 +16,9 @@ public class CharacterListResponse {
     private Long account;
     private String name;
     private Byte race;
+    private String raceName;
+    private Byte characterClass;
     private String className;
     private Byte level;
     private Byte online;
 }
-
