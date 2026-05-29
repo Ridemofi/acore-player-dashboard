@@ -91,9 +91,6 @@ public class Character {
     @Column(name = "totalKills", columnDefinition = "int unsigned")
     private Long totalKills;
 
-    @Column(name = "chosenTitle", columnDefinition = "int unsigned")
-    private Long chosenTitle;
-
     @Column(name = "todayKills", columnDefinition = "smallint unsigned")
     private Short todayKills;
 

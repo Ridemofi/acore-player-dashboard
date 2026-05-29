@@ -8,12 +8,20 @@ import java.time.LocalDateTime;
 @AllArgsConstructor @NoArgsConstructor
 @Builder
 public class CharacterResponse {
+    // Identidad
     private Long guid;
     private Long account;
     private String name;
+
+    // Raza / Clase / Genero
     private Byte race;
+    private String raceName;
     private Byte characterClass;
+    private String className;
     private Byte gender;
+    private String genderName;
+
+    // Progreso y estado
     private Byte level;
     private Long xp;
     private Long money;
@@ -21,21 +29,24 @@ public class CharacterResponse {
     private Long totalTime;
     private Long logoutTime;
     private Long health;
-    private Long power1;
-    private Long power2;
-    private Long power3;
-    private Long power4;
-    private Long power5;
-    private Long power6;
-    private Long power7;
+
+    // Recursos(mana,furia,etc)
+    private String resourceName;
+    private Long resourceValue;
+
+    // Ubicacion y metadata
     private LocalDateTime createdDate;
     private Short map;
-    private Short zone;
+    private String mapName;
+    private Short zone; // sin uso frontend(posible uso backend)
     private String equipmentCache;
+
+    // PvE / PvP
     private Long totalKills;
-    private Long chosenTitle;
     private Short todayKills;
     private Long arenaPoints;
+
+    // Talentos
     private Byte talentGroupsCount;
     private Byte activeTalentGroup;
 }

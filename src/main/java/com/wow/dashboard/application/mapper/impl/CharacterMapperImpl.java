@@ -1,8 +1,7 @@
 package com.wow.dashboard.application.mapper.impl;
 
 import com.wow.dashboard.application.mapper.CharacterMapper;
-import com.wow.dashboard.domain.enums.CharacterClass;
-import com.wow.dashboard.domain.enums.CharacterRace;
+import com.wow.dashboard.domain.enums.*;
 import com.wow.dashboard.domain.model.Character;
 import com.wow.dashboard.web.dto.character.response.CharacterResponse;
 import com.wow.dashboard.web.dto.character.response.CharacterListResponse;
@@ -20,8 +19,11 @@ public class CharacterMapperImpl implements CharacterMapper {
                 .account(character.getAccount())
                 .name(character.getName())
                 .race(character.getRace())
+                .raceName(CharacterRace.getLabelSafe(Byte.toUnsignedInt(character.getRace())))
                 .characterClass(character.getCharacterClass())
+                .className(CharacterClass.getLabelSafe(Byte.toUnsignedInt(character.getCharacterClass())))
                 .gender(character.getGender())
+                .genderName(CharacterGender.getLabelSafe(Byte.toUnsignedInt(character.getGender())))
                 .level(character.getLevel())
                 .xp(character.getXp())
                 .money(character.getMoney())
@@ -29,19 +31,14 @@ public class CharacterMapperImpl implements CharacterMapper {
                 .totalTime(character.getTotalTime())
                 .logoutTime(character.getLogoutTime())
                 .health(character.getHealth())
-                .power1(character.getPower1())
-                .power2(character.getPower2())
-                .power3(character.getPower3())
-                .power4(character.getPower4())
-                .power5(character.getPower5())
-                .power6(character.getPower6())
-                .power7(character.getPower7())
+                .resourceName(CharacterResource.getLabelSafe(Byte.toUnsignedInt(character.getCharacterClass())))
+                .resourceValue(CharacterResource.getResourceValue(character))
                 .createdDate(character.getCreatedDate())
                 .map(character.getMap())
+                .mapName(CharacterLocation.getLabelSafe(Short.toUnsignedInt(character.getMap())))
                 .zone(character.getZone())
                 .equipmentCache(character.getEquipmentCache())
                 .totalKills(character.getTotalKills())
-                .chosenTitle(character.getChosenTitle())
                 .todayKills(character.getTodayKills())
                 .arenaPoints(character.getArenaPoints())
                 .talentGroupsCount(character.getTalentGroupsCount())
